@@ -166,11 +166,14 @@ using namespace std;
 /* Write	a	Θ(n)	algorithm	that	sorts	n	distinct	integers,	ranging	in	size	between 1	and	kn	inclusive,	where	k	is
  * a	constant	positive	integer.	(Hint:	Use	a knelement	array.) */
 
-/************************************************** Problem 19 ********************************************************/
-	// f(x)	=	3n^2	+ 10nlogn + 1000n + 4logn + 9999 --> belongs to O(n^2)
 
-/************************************************** Problem 21 ********************************************************/
-// 	f(x)	=	n	+	n^2	+	2^n	+	n^4 --> belongs to O(n^4)
+
+/************************************************** Problem 33 ********************************************************/
+/*Give	an	algorithm	for	the	following	problem	and	determine	its	time complexity.	Given	a	list	of	n	distinct
+ *positive	integers,	partition	the	list	into two	sublists,	each	of	size	n/2,	such	that	the	difference between	the	sums	of the	integers
+ *in	the	two	sublists	is	maximized.	You	may	assume	that	n	is	a multiple	of	2.*/
+
+
 
 
 }
