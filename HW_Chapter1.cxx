@@ -21,14 +21,68 @@ using namespace std;
 /************************************************** Problem 2 ********************************************************/
 /*Write	an	algorithm	that	finds	the	m	smallest	numbers	in	a	list	of	n	numbers */
 // First sort the array and then print the first m values
+// Should be about O(nlogn)
 
-  void minimums(int arr[], int m, int n)
+  void m_smallest (int arr[], int m)
   {
-    sort(arr,arr+n); //sorts the array in ascending order
-    for (int i = 0; i<m; i++)
-    {
+    mergesort(arr, n); //sorted array from smallest to greatest
+    // print the first m numbers of the list
+    for (int i = 0; i < m; i++)
       cout << arr[i] << endl;
+  }
+  void mergesort(int arr[], size_t n)
+  {
+    size_t n1; // size of first subarray
+    size_t n2; // size of second subarray
+
+    if (n > 1)
+    {
+      // computed sizes of subarrays
+      n1 = n/2;
+      n2 = n-n1;
+
+      // sort arr[0] to arr[n1-1]
+      mergesort(arr,n1);
+      // sort arr[n1] to arr[n]
+      mergesort(arr+n1,n2);
+
+      // merge the two halves
+      merge(arr,n1,n2);
     }
+  }
+
+    void merge(int arr[], size_t n1, size_t n2)
+    {
+      int* temp; // points to dynamic array for the sorted elements
+
+      size_t c = 0; //number of elements copied from arr to temp (index of the temp arr)
+      size_t c1 = 0; // number copied from first half; (index of first subarray)
+      size_t c2 = 0; // number copied from second half (index of second subarray)
+
+      // allocate memory for dynamic array
+      temp = new int[n1+n2];
+
+      // merge elements from arr to temp array
+      // ++ allows to use the current value of the variable and then increment by 1
+      while ((c1 < n1) && (c2 < n2))
+      {
+        if (arr[c1] < (arr + n1)[c2])
+          temp[c++] = arr[c1++]; //copy from the first half
+        else
+          temp[c++] = (arr+n1)[c2++];
+      }
+
+        // copy remaining elements in left and right subarrays (if one subarray was bigger than the other)
+        while (c1 < n1)
+          temp[c++] = arr[c1++];
+        while (c2 < n2)
+          temp[c++] = (arr+n1)[c2++];
+
+        // copy temp into arr and release temp
+        for (int i = 0; i < n1+n2; i++)
+          arr[i] = temp[i];
+
+        delete [] temp;
   }
 
 /************************************************** Problem 4 ********************************************************/
@@ -105,23 +159,18 @@ using namespace std;
 
 /************************************************** Problem 9 ********************************************************/
 /*Give	a	practical	example	in	which	you	would	not	use	Exchange	Sort (Algorithm	1.3)	to	do	a	sorting	task.*/
-// If the list is completely out of order, then exchange sort is impractical because it will take O(n^2) time
-
-
+// If the list is completely out of order, then exchange sort is impractical because it will take O(n^2) time. Exchange sort works best if the list
+// somewhat organized.
 
 /************************************************** Problem 12 ********************************************************/
 /* Write	a	Θ(n)	algorithm	that	sorts	n	distinct	integers,	ranging	in	size	between 1	and	kn	inclusive,	where	k	is
  * a	constant	positive	integer.	(Hint:	Use	a knelement	array.) */
 
-
-
 /************************************************** Problem 19 ********************************************************/
 	// f(x)	=	3n^2	+ 10nlogn + 1000n + 4logn + 9999 --> belongs to O(n^2)
-
 
 /************************************************** Problem 21 ********************************************************/
 // 	f(x)	=	n	+	n^2	+	2^n	+	n^4 --> belongs to O(n^4)
 
 
-
-    }
+}
