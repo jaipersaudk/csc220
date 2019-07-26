@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <queue>
@@ -63,8 +63,8 @@ struct huffTreeNode
 void Count_characters(int* counter)
 {
   // initializing all indices in the counter array to 0
-  for (int i = 0; i < 256; i++)
-    counter[i] = 0;
+  // for (int i = 0; i < 256; i++)
+  //   counter[i] = 0;
 
   //inputting the raven poem
   ifstream myinputFile("Raven_poem.txt");
@@ -92,7 +92,7 @@ void Count_characters(int* counter)
 int main()
 {
   // declaring an array for the characters and using the array in Count_characters function
-  int counter[256];
+  int counter[256] = {};
   Count_characters(counter);
 
   // implementing priority queue
@@ -101,7 +101,7 @@ int main()
     if(counter[i])
       myQ.push(huffTreeNode(i,counter[i]));
 
-  // pushing values from priority onto the heap
+  // pushing values from priority onto the min heap
   while(myQ.size() > 1)
   {
     huffTreeNode* left_child = new
