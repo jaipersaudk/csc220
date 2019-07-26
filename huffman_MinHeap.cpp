@@ -272,7 +272,6 @@ void printCodes(struct MinHeapNode* root, int arr[], int top)
 // Huffman Tree and print codes by traversing
 // the built Huffman Tree
 void HuffmanCodes(char data[], int freq[], int size)
-
 {
 	// Construct Huffman Tree
 	struct MinHeapNode* root
