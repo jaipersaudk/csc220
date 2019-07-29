@@ -5,16 +5,16 @@
 #include <algorithm>
 using namespace std;
 
-struct huffTreeNode
+struct huffmanTree
 {
   // global variables
   int freq; // total frequency at given node
   unsigned char data;
-  const huffTreeNode *left_child; // left and right child for the heap
-  const huffTreeNode *right_child;
+  const huffmanTree *left_child; // left and right child for the heap
+  const huffmanTree *right_child;
 
 
-  huffTreeNode(unsigned char d = 0, int i = -1)
+  huffmanTree(unsigned char d = 0, int i = -1)
   {
     // inital values for global variables
     data = d;
@@ -23,7 +23,7 @@ struct huffTreeNode
     right_child = 0;
   }
 
-  huffTreeNode(const huffTreeNode* c1, const huffTreeNode* c2)
+  huffmanTree(const huffmanTree* c1, const huffmanTree* c2)
   {
     freq = c1->freq + c2->freq; // the weight of node is the sum of the left and right child
     left_child = c1;
@@ -31,9 +31,9 @@ struct huffTreeNode
   }
 
   // overloaded operator
-  bool operator < (const huffTreeNode& htn) const
+  bool operator < (const huffmanTree& huff) const
   {
-    return freq > htn.freq;
+    return freq > huff.freq;
   }
 
 
@@ -84,22 +84,22 @@ int main()
   int CC[256] = {};
   Count_characters(CC);
 
-  // implementing priority queue called pQ with data structure huffTreeNode
-  priority_queue<huffTreeNode> pQ;
+  // implementing priority queue called pQ with data structure huffmanTree
+  priority_queue<huffmanTree> pQ;
   for (int i = 0; i < 256; i++)
     if(CC[i])
-      pQ.push(huffTreeNode(i,CC[i]));
+      pQ.push(huffmanTree(i,CC[i]));
 
   // implementing a heap for the huffman tree
   while(pQ.size() > 1)
   {
-    huffTreeNode* left_child = new
-    huffTreeNode(pQ.top());
+    huffmanTree* left_child = new
+    huffmanTree(pQ.top());
     pQ.pop();
-    huffTreeNode* right_child = new
-    huffTreeNode(pQ.top());
+    huffmanTree* right_child = new
+    huffmanTree(pQ.top());
     pQ.pop();
-    pQ.push(huffTreeNode(left_child, right_child));
+    pQ.push(huffmanTree(left_child, right_child));
   }
 
   // printing the output values

@@ -39,10 +39,9 @@ int main()
   {
     cout << "What is the stamps' face value? ";
     cin >> stamps[i];
-    // cout << "\n";
   }
 
-  // create a set of integers to store the answer
+  // create a set of integers to store the answer (sets only contain distinct elements and they are sorted)
   set<int> solution;
   // All valid prices will be stored in ans set
   compute(1, 0, stamps, solution);
@@ -52,5 +51,5 @@ int main()
   for(int i : solution)
     cout << i << " ";
 
-  cout << "\n";
+cout << "\n";
 }
