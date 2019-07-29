@@ -8,18 +8,18 @@ using namespace std;
 
 int N, M;
 
-void compute(int num, int sum, vector<int> &stamps, set<int> &ans)
+void compute(int num, int total, vector<int> &stamps, set<int> &solution)
 {
-  // Add current value to the set
-  ans.insert(sum);
-  // If we have no more steps left end proccess
+  // insert the current sum into the solution set
+  solution.insert(total);
+  // if num is greater than the number of stamps to put on the letter
   if (num > M)
     return;
 
   // For each # of denominations of stamps, call the recursive function
   // looping through the entire vector
   for(int stamp : stamps)
-    compute(num+1, sum+stamp, stamps, ans);
+    compute(num+1, total+stamp, stamps, solution);
 
   return;
 }
@@ -29,7 +29,6 @@ int main()
   // Input
   cout << "How many stamps do you have? ";
   cin >> N;
-  // cout << "\n";
   cout << "How many stamps can you put on the letter? ";
   cin >> M;
   cout << "\n";
@@ -44,14 +43,14 @@ int main()
   }
 
   // create a set of integers to store the answer
-  set<int> ans;
+  set<int> solution;
   // All valid prices will be stored in ans set
-  compute(1, 0, stamps, ans);
+  compute(1, 0, stamps, solution);
 
   cout << "\n";
   // looping through the entire set to print the answers
-  for(int x : ans)
-    cout << x << " ";
+  for(int i : solution)
+    cout << i << " ";
 
   cout << "\n";
 }

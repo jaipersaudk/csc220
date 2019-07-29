@@ -3,7 +3,7 @@
 #include <vector>
 #include <time.h>
 #include <algorithm>
-
+#include <string>
 
 
 //lets create a population
@@ -19,7 +19,7 @@ struct Population {
 
 int main() {
 	//for this example we are going to use a string as a kind of "goal" to achieve
-	std::string DNA = "I am a DNA string that needs to be found, shall happen soon!";
+	std::string DNA = "Testing Genetic Algorithm. This algorithm should generate the correct string!";
 	bool SequenceFound = false;
 	int MutationRate = 25; // We are going to use this for mutation of genes 1000 = 100% 1 = .01% mutation rate
 	srand(time(NULL));
@@ -46,8 +46,13 @@ int main() {
 		//clear out the fitness here and then reevaluate for each member, also check if fitness has reached maximum
 		for (int i = 0; i < Pop.Members.size(); i++) {
 			Pop.Members.at(i).Fitness = 0;
-			for (int j = 0; j < Pop.Members.at(i).DNA.size(); j++) { if (Pop.Members.at(i).DNA.at(j) == DNA.at(j)) { Pop.Members.at(i).Fitness += 10; } }
-			if (Pop.Members.at(i).Fitness == DNA.size() * 10) SequenceFound = true;
+			for (int j = 0; j < Pop.Members.at(i).DNA.size(); j++) {
+				if (Pop.Members.at(i).DNA.at(j) == DNA.at(j)) {
+					Pop.Members.at(i).Fitness += 10;
+				}
+			}
+			if (Pop.Members.at(i).Fitness == DNA.size() * 10)
+				SequenceFound = true;
 		}
 
 		//now lets sort the population by fitness, from highest to lowest

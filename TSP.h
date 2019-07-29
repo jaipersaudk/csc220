@@ -2,7 +2,7 @@
 #define TSP
 #include "string.h"
 
-class TSP_algorithm
+class TSP
 {
 	public:
 		TSP(const double crossoverProbability, const double mutationProbability);

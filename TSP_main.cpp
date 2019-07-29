@@ -8,7 +8,7 @@ using namespace std;
 int main(int argc, const char *argv[])
 {
 	/* 90% mutation probability, 2% mutation probability */
-	TSP *tsp = new TSP(0.9, 0.02);
+	TSP* tsp = new TSP(0.9, 0.02);
 	size_t generations = 0, generationsWithoutImprovement = 0;
 	double bestFitness = -1;
 	double initialAverage = tsp->getAverageDistance();

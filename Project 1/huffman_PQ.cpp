@@ -25,7 +25,6 @@ struct huffTreeNode
 
   huffTreeNode(const huffTreeNode* c1, const huffTreeNode* c2)
   {
-    //data = 0;
     freq = c1->freq + c2->freq; // the weight of node is the sum of the left and right child
     left_child = c1;
     right_child = c2;
@@ -60,20 +59,10 @@ struct huffTreeNode
 };
 
 // input the poem and count the characters in the file
-void Count_characters(int* counter)
+void Count_characters(int* CC)
 {
-  // initializing all indices in the counter array to 0
-  // for (int i = 0; i < 256; i++)
-  //   counter[i] = 0;
-
   //inputting the raven poem
   ifstream myinputFile("Raven_poem.txt");
-
-  // if(!myinputFile)
-  // {
-  //   cout << "Can't open input file" << endl;
-  //   throw "abort";
-  // }
 
   myinputFile.setf(ios::skipws); // needed to skip the whitespace of the file
 
@@ -83,7 +72,7 @@ void Count_characters(int* counter)
     unsigned char d;
     myinputFile >> d;
     if (myinputFile)
-      counter[d]++;
+      CC[d]++;
     else
       break;
   }
@@ -92,14 +81,14 @@ void Count_characters(int* counter)
 int main()
 {
   // declaring an empty array for the characters and using the array in the Count_characters function
-  int counter[256] = {};
-  Count_characters(counter);
+  int CC[256] = {};
+  Count_characters(CC);
 
   // implementing priority queue called pQ with data structure huffTreeNode
   priority_queue<huffTreeNode> pQ;
   for (int i = 0; i < 256; i++)
-    if(counter[i])
-      pQ.push(huffTreeNode(i,counter[i]));
+    if(CC[i])
+      pQ.push(huffTreeNode(i,CC[i]));
 
   // implementing a heap for the huffman tree
   while(pQ.size() > 1)
@@ -114,8 +103,6 @@ int main()
   }
 
   // printing the output values
-  /* cout << "CHARACTER \t FREQUENCY \t HUFFMANCODE" << endl;
-   cout << "--------- \t --------- \t -----------" << endl; */
   pQ.top().traversing();
   getchar();
   return 0;
